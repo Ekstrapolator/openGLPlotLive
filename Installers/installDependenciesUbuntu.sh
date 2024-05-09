@@ -16,6 +16,7 @@ echo "Switched to ~/Downloads"
 
 echo -e "\e[44m ================================ Build Dependencies =============================== \e[49m"
 sudo apt-get -y install cmake
+sudo apt install libwayland-dev libxkbcommon-dev xorg-dev
 
 echo -e "\e[44m ===================== GLFW (multi-platform library for OpenGL) ==================== \e[49m"
 if [ ! -d ~/Downloads/glfw/ ]; then
