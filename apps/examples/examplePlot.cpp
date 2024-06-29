@@ -13,8 +13,8 @@
 #include <memory>
 
 // Project Includes
-#include "../src/window/window.h"
-#include "../src/lines/Line2DVecGLMV3.h"
+#include "../../src/window/window.h"
+#include "../../src/lines/Line2DVecGLMV3.h"
 
 
 int main(int argc, char **argv) {

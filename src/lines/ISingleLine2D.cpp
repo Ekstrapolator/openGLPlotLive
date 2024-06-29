@@ -1,6 +1,7 @@
 //
 // Created by bcub3d-desktop on 27/3/20.
 //
+#define GLM_ENABLE_EXPERIMENTAL
 
 #include <glm/gtx/string_cast.hpp>
 #include "ISingleLine2D.h"
