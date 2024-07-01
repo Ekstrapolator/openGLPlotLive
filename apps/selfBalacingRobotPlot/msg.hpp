@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <cstring>
+#include <type_traits>
 
 enum class MsgId : uint32_t {
   mInvalid,
@@ -14,15 +15,15 @@ enum class MsgId : uint32_t {
 };
 
 struct MsgHeader {
-  uint32_t msgPattern{0};
-  MsgId msgId{MsgId::mInvalid};
-  uint32_t dataLength{0};
+  uint32_t msgPattern;
+  MsgId msgId;
+  uint32_t dataLength;
 };
 
 struct MsgPayload {
-  uint8_t data[500] = {};
+  uint8_t data[500];
   /* payloadOffset won't be sent to receiver so maximum possible length will be 512*/
-  uint8_t* payloadOffset = &data[0];
+  uint8_t* payloadOffset;
 };
 
 struct LogPacket {
@@ -32,3 +33,5 @@ struct LogPacket {
   void fillHeader(size_t dataLength, MsgId msgId);
   void fillPayload(void* data, size_t dataLength);
 };
+
+static_assert(std::is_trivial_v<LogPacket> && std::is_standard_layout_v<LogPacket>, "LogPacket is not POD type\n");

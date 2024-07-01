@@ -8,7 +8,9 @@ void LogPacket::fillHeader(size_t dataLength, MsgId msgId) {
   this->msgHeader.msgPattern = 0xDEADBEEF;
   this->msgHeader.msgId = msgId;
   this->msgHeader.dataLength = dataLength;
-
+  this->msgPayload.payloadOffset = &this->msgPayload.data[0];
+  /* Clear data */
+  memset(&this->msgPayload.data[0], 0, 500);
 }
 size_t LogPacket::getMsgTotalLength() const {
   return this->msgHeader.dataLength + sizeof(MsgHeader);

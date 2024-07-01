@@ -28,7 +28,7 @@ target_include_directories(qformat_lib
 
 add_library(message_lib
         STATIC
-        qformat.cpp
+        msg.cpp
 )
 
 target_include_directories(message_lib
