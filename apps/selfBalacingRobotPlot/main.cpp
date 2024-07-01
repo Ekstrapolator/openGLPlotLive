@@ -8,8 +8,13 @@
 // Project Includes
 #include "../../src/window/window.h"
 #include "../../src/lines/Line2DVecGLMV3.h"
+#include "udpServer.hpp"
+#include "qformat.hpp"
+#include "msg.hpp"
 
 int main(int argc, char **argv) {
+  /* Create udp class*/
+  udp::UdpServer udpServer(22359);
 
   // Window Size
   int windowWidth = 1920;
@@ -31,6 +36,7 @@ int main(int argc, char **argv) {
   xVec9.reserve(2500);
   yVec9.reserve(2500);
 
+
   // Create axes
   std::shared_ptr<GLPL::Axes2D> axesPt = std::dynamic_pointer_cast<GLPL::Axes2D>(myplot->getAxes(0));
   // Add points to line
@@ -47,13 +53,14 @@ int main(int argc, char **argv) {
   axesPt->setButtonState("Y Axes Limits Scaling", true);
   axesPt->setYLabelRotation(GLPL::SIDEWAYS_RIGHT);
 
-  size_t i{1};
+  size_t i{1}, ix{1};
+  LogPacket buff[10];
   while (!glfwWindowShouldClose(window->getWindow())) {
 
     // Pre-loop draw
     window2->preLoopDraw(true);
-
-    xVec9.push_back(i);
+    udpServer.reciveData(reinterpret_cast<uint8_t*>(&buff[0]), sizeof(LogPacket));
+    xVec9.push_back(static_cast<float>(i));
     yVec9.push_back(4 * sin(i / 100.0));
     line12buff->updateInternalData();
 
