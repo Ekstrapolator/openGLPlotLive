@@ -11,7 +11,7 @@ add_compile_options(-gdwarf-4)
 set(OpenGL_GL_PREFERENCE "GLVND")
 
 # Add c++14 flag to compiler
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
 # Add Cmake Module Path
